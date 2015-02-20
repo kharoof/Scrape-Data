@@ -1,29 +1,31 @@
+#Use XML to extract data from webpages,
+#Use XML xpathSApply or htmltab to parse the data
+#Cleaning up the data is left for later
+
 #Munster Rugby, http://www.munsterrugby.ie
 ########################################
 parseMunsterResults <- function(url_html){
   #Get HTML table containing the results
   #On the rbs website the results are stored in a table with class list but there is a spanning column that contains
   #the word round which we exclude
-  library(htmltab)
   #Player Data
   #home_player_data <- htmltab(doc=url_html, which=1)
   #away_player_data <- htmltab(doc=url_html, which=2)
   #Match Data
-  final_score <- xpathSApply(url_html, "//div[@class='score']", xmlValue)[1]
-  half_time_score <- xpathSApply(url_html, "//div[@class='hidden halftime']", xmlValue)
-  home_team <- xpathSApply(url_html, "//div[@class='home']", xmlValue)[1]
-  away_team <- xpathSApply(url_html, "//div[@class='away']", xmlValue)[1]
-  date <- xpathSApply(url_html, "//div[@class='date']", xmlValue)
-  time <- xpathSApply(url_html, "//div[@class='time']", xmlValue)
-  venue <- xpathSApply(url_html, "//div[@class='venue']", xmlValue)[1]
-  other <- xpathSApply(url_html, "//span[@class='name']", xmlValue)
-  match.data <- data.frame(c(final_score,half_time_score,home_team,away_team,date,time,venue,other,docName(url_html)))
+  final_score <- xpathSApply(url_html, "//td[@class='field_Score']", xmlValue)
+  home_team <- xpathSApply(url_html, "//td[@class='field_HomeDisplay']", xmlValue)
+  away_team <- xpathSApply(url_html, "//td[@class='field_AwayDisplay']", xmlValue)
+  date <- xpathSApply(url_html, "//td[@class='field_DateShort']", xmlValue)
+  time <- xpathSApply(url_html, "//td[@class='field_Time H:M']", xmlValue)
+  venue <- xpathSApply(url_html, "//td[@class='field_VenName']", xmlValue)
+  attendance <- xpathSApply(url_html, "//td[@class='field_BroadcastAttend']", xmlValue)
+  match.data <- data.frame(final_score,home_team,away_team,date,time,venue,attendance)
+  match.data$url_html <- docName(url_html)
   return(match.data)
 }
-
-
 #Use the XML package to parse the website and return the html from each page to a variable (running this will take a long time)
 #Its important to note that this function relies on the webpages to parse to be in sequental order
+library(XML)
 raw_html_data <- lapply(1995:2014, function(season) htmlTreeParse(paste0('http://www.munsterrugby.ie/rugby/munster_first_team_comprehensive_fixtures.php?includeref=6177&season=',season,"-",season+1),useInternalNodes=T))
 #Parse the html
 munster <- do.call(rbind,lapply(raw_html_data, parseMunsterResults))
