@@ -1,6 +1,8 @@
 # Scrape-Data
 Scrape raw data from the Web using R
 
-R is an ideal solution for scraping data from the web in order to perform some statistical analysis. Its not the quickest or as functional (compared to python) but its easy to use and does the job!
+R is an ideal solution for scraping small amounts of data from the web. If you wish to analyse football results or house prices for example you need data in order to perform the statistical analysis. R is not the quickest or most functional way to scrape data from the web (for advanced solutions see python) but its easy to use and does the job!
 
-There are several packages and methods to scrape data from the web. This repository contains tailored functions for various websites all building on XML or the htmltab packages.
+You will always encounter a trade off between spending time to scrape data and just getting some quick numbers for your analysis. Sometimes its easiest and quickest to just copy and paste data from a webpage in order to get the data that you need but for any scraping that involves more than a few copy and pastes R might be just what your looking for. Before embarking on developing a website scraping script always check if the website has the data available as a csv download. A number of sites provide this option.
+
+There are several packages and methods available to scrape data from the web. This repository contains tailored functions for several websites. Examples are shown that make use of the packages XML and RCurl. Depending on the webpage your scraping you might need to use a different method. 
