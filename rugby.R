@@ -49,6 +49,7 @@ parseSixNationsResults <- function(url_html){
   return(results)
 }
 #Clean the results, for use on Six Nations Page
+#Need to come back to this......
 #Format dates, add team and opponent fields and pts diff win lose etc...
 cleanResults <- function(data, team){
   data = cbind(data,data.frame(matrix(as.numeric(unlist(strsplit(data$Score, "-|v"))), ncol=2, byrow=T)))
