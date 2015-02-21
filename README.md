@@ -1,5 +1,5 @@
 # Scrape-Data
-Examples showing how to scrape data from the Web using R
+This repo contains some basic examples showing how to scrape data from the Web using R
 
 R is an ideal solution for scraping small amounts of data from the web. If you wish to analyse football results or house prices for example you need data in order to perform the statistical analysis. R is not the quickest or most functional way to scrape data from the web (for advanced solutions see python) but its easy to use and does the job!
 
