@@ -9,6 +9,6 @@ There are several packages and methods available to scrape data from the web. Th
 
 XML and RCurl are two packages that allow you to scrape raw data from the web. You basically provide a webpage there are functions that then retrieve the raw html from the link.
 
-XML then provides a function xpathSApply which searches the html and extracts data. You need to specify the structure of the data to extract. For example you can tell it to extract all the data contained in <td> tags. This is easiest to understand with some examples. 
+XML also provides a function xpathSApply which parses the html and extracts data. You can specify the structure of the data to extract. For example you can tell it to extract all the data contained in <td> tags. This is easiest to understand with some examples. 
 
-There is also a very clever package htmltab which does the same thing as xpathSApply but automatically finds tables in the html and returnds the table as a data.table. Most of the time when your extracting data this is exactly what you need.  
+There is also a very clever package htmltab which parses data (similar to xpathSApply) and automatically finds tables in the html and returns the table as a data.table. Most of the time when your extracting data this is exactly what you need.  
